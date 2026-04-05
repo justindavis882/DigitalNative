@@ -66,14 +66,15 @@ verifyBtn.addEventListener('click', async () => {
     }
 });
 
-// 2. Upload Logic
+// 2. Upload Logic (Multi-File Sequential)
 uploadBtn.addEventListener('click', async () => {
-    const file = fileInput.files[0];
+    // Convert the FileList object into a standard array
+    const files = Array.from(fileInput.files);
     const name = uploaderName.value.trim();
     const notes = uploadNotes.value.trim();
 
-    if (!file || !name) {
-        alert("Please provide your name and select a file.");
+    if (files.length === 0 || !name) {
+        alert("Please provide your name and select at least one file.");
         return;
     }
 
@@ -82,51 +83,60 @@ uploadBtn.addEventListener('click', async () => {
     fileInput.disabled = true;
     progressContainer.classList.remove('hidden');
 
-    // Create storage reference based on security rules
-    const storageRef = ref(storage, `MythicFiles/${currentPin}/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    // Loop through each file sequentially to prevent browser memory crashes
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        
+        // A helper promise to pause the loop until the current file finishes
+        await new Promise((resolve, reject) => {
+            const storageRef = ref(storage, `MythicFiles/${currentPin}/${file.name}`);
+            const uploadTask = uploadBytesResumable(storageRef, file);
 
-    uploadTask.on('state_changed', 
-        (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            progressFill.style.width = progress + '%';
-            progressText.innerText = Math.round(progress) + '%';
-        }, 
-        (error) => {
-            console.error("Upload failed:", error);
-            alert("Upload failed. Please try again.");
-            uploadBtn.disabled = false;
-            fileInput.disabled = false;
-        }, 
-        async () => {
-            // Upload completed successfully
-            try {
-                // Log the comment/metadata to Firestore
-                await addDoc(collection(db, "dn_mythicFiles_comments"), {
-                    pin: currentPin,
-                    uploaderName: name,
-                    notes: notes,
-                    fileName: file.name,
-                    timestamp: new Date()
-                });
+            uploadTask.on('state_changed', 
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    progressFill.style.width = progress + '%';
+                    // Update text to show which file is uploading
+                    progressText.innerText = `File ${i + 1} of ${files.length}: ${Math.round(progress)}%`;
+                }, 
+                (error) => {
+                    console.error(`Upload failed for ${file.name}:`, error);
+                    alert(`Upload failed for ${file.name}. Moving to next file if any.`);
+                    resolve(); // Resolve anyway so the loop continues to the next file
+                }, 
+                async () => {
+                    // Current file upload completed successfully
+                    try {
+                        // Log this specific file to Firestore
+                        await addDoc(collection(db, "dn_mythicFiles_comments"), {
+                            pin: currentPin,
+                            uploaderName: name,
+                            notes: notes,
+                            fileName: file.name,
+                            timestamp: new Date()
+                        });
 
-                // --- NEW EMAILJS CODE ---
-                const templateParams = {
-                    uploader_name: name,
-                    pin: currentPin,
-                    notes: notes,
-                    file_name: file.name
-                };
+                        // Fire off the EmailJS notification for this file
+                        const templateParams = {
+                            uploader_name: name,
+                            pin: currentPin,
+                            notes: notes,
+                            file_name: file.name
+                        };
+                        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
 
-                // Add your Service ID and Template ID here:
-                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
-                // ------------------------
+                    } catch (error) {
+                        console.error("Error saving metadata or email for", file.name, error);
+                    }
+                    resolve(); // Tell the Promise this file is done, move to the next loop iteration
+                }
+            );
+        });
+    }
 
-                uploadSuccess.classList.remove('hidden');
-                uploadBtn.classList.add('hidden'); // Hide button to prevent double uploads
-            } catch (error) {
-                console.error("Error saving metadata:", error);
-            }
-        }
-    );
+    // This runs only after ALL files in the loop are fully resolved
+    progressText.innerText = "All files uploaded successfully!";
+    progressFill.style.backgroundColor = "#55ff55"; // Turn the bar green
+    uploadSuccess.classList.remove('hidden');
+    uploadBtn.classList.add('hidden');
 });
