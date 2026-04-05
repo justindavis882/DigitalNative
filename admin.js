@@ -185,6 +185,8 @@ async function loadInbox() {
                 linkElement.innerText = "Download File";
                 linkElement.target = "_blank"; 
             } catch (storageErr) {
+              document.getElementById(`link-${docSnap.id}`).innerText = "File not found in storage.";
+            }
         });
     } catch (error) {
         console.error("Error loading inbox:", error);
