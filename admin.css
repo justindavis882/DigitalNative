@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.admin-container {
+    max-width: 900px;
+    width: 100%;
+}
+
+header {
+    margin-bottom: 30px;
+    border-bottom: 1px dashed #555;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+h1 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+.dashboard-section {
+    margin-bottom: 50px;
+    background-color: #0a0a0a;
+    border: 1px solid #222;
+    padding: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+input[type="text"],
+input[type="password"] {
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 10px;
+    font-family: inherit;
+}
+
+input:focus { outline: none; border-color: #fff; }
+
+button {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+
+button:hover { background-color: #ccc; }
+
+.outline-btn {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.outline-btn:hover { background-color: #fff; color: #000; }
+
+.hidden { display: none !important; }
+.error-text { color: #ff5555; margin-top: 10px; }
+
+/* Table Styles */
+.create-project-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+th { color: #aaa; text-transform: uppercase; font-size: 0.9rem; }
+
+.status-open { color: #55ff55; font-weight: bold; }
+.status-closed { color: #ff5555; font-weight: bold; }
+
+/* Inbox Styles */
+.inbox-card {
+    border: 1px solid #333;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #111;
+}
+
+.inbox-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.download-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #00ffff;
+    text-decoration: none;
+    border-bottom: 1px dashed #00ffff;
+}
+.download-link:hover { color: #fff; border-color: #fff; }
