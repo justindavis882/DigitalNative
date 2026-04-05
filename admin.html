@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | MythicFiles</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="container admin-container">
+        <header>
+            <h1>Digital Native Admin</h1>
+            <p>MythicFiles Control Center</p>
+            <button id="logout-btn" class="hidden outline-btn">Sign Out</button>
+        </header>
+
+        <main id="login-screen">
+            <div class="input-group">
+                <label for="admin-email">Admin Email</label>
+                <input type="text" id="admin-email" placeholder="founder@digitalnative...">
+            </div>
+            <div class="input-group">
+                <label for="admin-pass">Password</label>
+                <input type="password" id="admin-pass">
+            </div>
+            <button id="login-btn">Authenticate</button>
+            <p id="login-error" class="error-text hidden">Authentication failed.</p>
+        </main>
+
+        <main id="dashboard-screen" class="hidden">
+            
+            <section class="dashboard-section">
+                <h2>Project Manager</h2>
+                <div class="create-project-bar">
+                    <input type="text" id="new-pin" placeholder="Custom PIN (e.g., 1234-DOE)">
+                    <input type="text" id="new-client" placeholder="Client Name">
+                    <button id="create-project-btn">Create Project</button>
+                </div>
+                
+                <table id="projects-table">
+                    <thead>
+                        <tr>
+                            <th>PIN</th>
+                            <th>Client Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="projects-tbody">
+                        </tbody>
+                </table>
+            </section>
+
+            <section class="dashboard-section">
+                <h2>Inbox & Files</h2>
+                <div id="inbox-feed">
+                    </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
