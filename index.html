@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MythicFiles | Digital Native</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MythicFiles</h1>
+            <p>Secure File Transfer Portal</p>
+        </header>
+
+        <main id="pin-screen">
+            <div class="input-group">
+                <label for="pin-input">Enter Project PIN</label>
+                <input type="text" id="pin-input" placeholder="e.g., 7749-SMITH" autocomplete="off">
+            </div>
+            <button id="verify-btn">Access Portal</button>
+            <p id="pin-error" class="error-text hidden">Invalid or closed project PIN.</p>
+        </main>
+
+        <main id="upload-screen" class="hidden">
+            <h2 id="project-welcome">Project Unlocked</h2>
+            
+            <div class="input-group">
+                <label for="uploader-name">Your Name</label>
+                <input type="text" id="uploader-name" placeholder="Who is sending this?">
+            </div>
+
+            <div class="input-group">
+                <label for="file-input">Select Video File (Up to 5GB)</label>
+                <input type="file" id="file-input" accept="video/*">
+            </div>
+
+            <div class="input-group">
+                <label for="upload-notes">Notes / Comments</label>
+                <textarea id="upload-notes" rows="4" placeholder="Add any details about this performance..."></textarea>
+            </div>
+
+            <button id="upload-btn">Start Upload</button>
+
+            <div id="progress-container" class="hidden">
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+                <p id="progress-text">0%</p>
+            </div>
+            <p id="upload-success" class="success-text hidden">Upload complete! The team has been notified.</p>
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
