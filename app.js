@@ -110,6 +110,18 @@ uploadBtn.addEventListener('click', async () => {
                     timestamp: new Date()
                 });
 
+                // --- NEW EMAILJS CODE ---
+                const templateParams = {
+                    uploader_name: name,
+                    pin: currentPin,
+                    notes: notes,
+                    file_name: file.name
+                };
+
+                // Add your Service ID and Template ID here:
+                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
+                // ------------------------
+
                 uploadSuccess.classList.remove('hidden');
                 uploadBtn.classList.add('hidden'); // Hide button to prevent double uploads
             } catch (error) {
