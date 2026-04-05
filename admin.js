@@ -167,6 +167,15 @@ async function loadInbox() {
             `;
             inboxFeed.appendChild(card);
 
+            // NEW: Check if fileName actually exists before asking Storage for it
+            if (!data.fileName) {
+                const linkElement = document.getElementById(`link-${docSnap.id}`);
+                linkElement.innerText = "No file attached to this record.";
+                linkElement.style.color = "#888"; // Grey it out
+                linkElement.style.borderBottom = "none";
+                return; // Stop here, don't ping Firebase Storage
+            }
+
             // Fetch the secure download URL from Firebase Storage
             try {
                 const fileRef = ref(storage, `MythicFiles/${data.pin}/${data.fileName}`);
@@ -174,10 +183,8 @@ async function loadInbox() {
                 const linkElement = document.getElementById(`link-${docSnap.id}`);
                 linkElement.href = url;
                 linkElement.innerText = "Download File";
-                linkElement.target = "_blank"; // Opens in new tab
+                linkElement.target = "_blank"; 
             } catch (storageErr) {
-                document.getElementById(`link-${docSnap.id}`).innerText = "File not found or processing.";
-            }
         });
     } catch (error) {
         console.error("Error loading inbox:", error);
