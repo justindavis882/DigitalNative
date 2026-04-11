@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Native | Design & Development</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">DIGITAL NATIVE</div>
+        <div class="nav-links">
+            <a href="#services">What We Do</a>
+            <a href="#intake">Client Intake</a>
+            <a href="#store">Digital Store</a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <h1>Building the Digital Frontier</h1>
+        <p>Custom applications, stage production software, and web development.</p>
+        <a href="#intake" class="btn btn-primary">Start a Project</a>
+    </header>
+
+    <main class="container">
+        <section id="services" class="page-section">
+            <h2 class="accent-cyan">/// What We Do</h2>
+            <div class="grid-layout">
+                <div class="card">
+                    <h3>Custom Web Apps</h3>
+                    <p>From Learning Management Systems to POS interfaces, we build lightweight, fast, and scalable tools.</p>
+                </div>
+                <div class="card">
+                    <h3>Production Tech</h3>
+                    <p>Software and hardware integration for stage production, audio mixing, and DMX lighting controls.</p>
+                </div>
+                <div class="card">
+                    <h3>Game Development</h3>
+                    <p>Logic-driven web games and interactive digital experiences.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="intake" class="page-section">
+            <h2 class="accent-magenta">/// Client Intake</h2>
+            <p class="section-desc">Tell us about your project. Our team will review your specifications and get back to you with a proposal.</p>
+            
+            <form id="intake-form" class="form-container">
+                <div class="input-group">
+                    <label for="client-name">Name / Organization</label>
+                    <input type="text" id="client-name" placeholder="Who are we working with?">
+                </div>
+                <div class="input-group">
+                    <label for="client-email">Email Address</label>
+                    <input type="email" id="client-email" placeholder="contact@domain.com">
+                </div>
+                <div class="input-group">
+                    <label for="project-type">Project Type</label>
+                    <select id="project-type" class="custom-select">
+                        <option value="webapp">Web Application</option>
+                        <option value="website">Standard Website</option>
+                        <option value="hardware">Hardware/Stage Integration</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="project-details">Project Specifications</label>
+                    <textarea id="project-details" rows="5" placeholder="Describe your vision, budget, and timeline..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-secondary">Submit Brief</button>
+            </form>
+        </section>
+
+        <section id="store" class="page-section">
+            <h2 class="accent-green">/// Digital Store</h2>
+            <p class="section-desc">Ready-to-deploy boilerplates and software licenses.</p>
+            
+            <div class="grid-layout">
+                <div class="store-item">
+                    <div class="store-img-placeholder">SimpleSIS</div>
+                    <h3>SimpleSIS Boilerplate</h3>
+                    <p>A lightweight Learning Management and School Information System foundation.</p>
+                    <div class="price-row">
+                        <span class="price">$49.99</span>
+                        <button class="btn btn-outline">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="store-item">
+                    <div class="store-img-placeholder">VenueOS</div>
+                    <h3>VenueOS Framework</h3>
+                    <p>Local network management system ideal for enclosed organizational economies.</p>
+                    <div class="price-row">
+                        <span class="price">$75.00</span>
+                        <button class="btn btn-outline">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="store-item">
+                    <div class="store-img-placeholder">LabelGeni</div>
+                    <h3>LabelGeni App</h3>
+                    <p>Plug-and-play web application for generating and printing 4x6 labels.</p>
+                    <div class="price-row">
+                        <span class="price">$29.99</span>
+                        <button class="btn btn-outline">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Digital Native. All rights reserved.</p>
+    </footer>
+</body>
+</html>
