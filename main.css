@@ -367,12 +367,12 @@ footer {
 /* --- SIDEPHONE 3:4 OPTIMIZATION --- */
 
 /* Center the wrapper on larger screens */
-body {
+body.app-view {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #050505; /* Slightly darker to make the app pop */
+    background-color: #050505; 
 }
 
 /* The 3:4 Device Container */
