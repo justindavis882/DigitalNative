@@ -436,3 +436,29 @@ body.app-view {
     margin-top: auto;
     text-align: center;
 }
+
+/* --- SIDEPHONE APP STORE SPECIFICS --- */
+
+/* Base styling for the orange DN icon */
+.app-icon.sidephone-icon {
+    color: #ff9800; /* Orange operator color from the calculator */
+    border: 2px solid #ff9800;
+    font-weight: 900;
+    font-size: 1.5rem;
+    background-color: rgba(255, 152, 0, 0.1);
+}
+
+/* Update standard app buttons to match the Sidephone aesthetic */
+.app-card:hover {
+    border-color: #ff9800; /* Change the hover state to Sidephone Orange */
+}
+
+/* Adjust the 3:4 wrapper for mobile realism */
+@media (max-width: 600px) {
+    .sidephone-wrapper {
+        width: 100vw;
+        min-height: 100vh;
+        border: none;
+        border-radius: 0;
+    }
+}
