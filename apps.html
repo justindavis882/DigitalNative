@@ -3,34 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Collection | Digital Native</title>
+    <title>Sidephone App Store | Digital Native</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body class="app-view">
     <div class="sidephone-wrapper">
         <nav class="top-nav">
-            <div class="logo">DIGITAL NATIVE</div>
+            <div class="logo">DN STORE</div>
             <div class="nav-links">
-                <a href="index.html#services">What We Do</a>
-                <a href="index.html#intake">Client Intake</a>
-                <a href="apps.html">App Store</a>
+                <a href="index.html#services">Back to Home</a>
             </div>
         </nav>
     
-        <header class="hero-section" style="padding: 60px 20px;">
-            <h1>Digital Store</h1>
-            <p>Explore our ecosystem of applications and frameworks.</p>
+        <header class="hero-section" style="padding: 40px 20px;">
+            <h1>Sidephone App Store</h1>
+            <p>Distraction-free tools for the minimalist tech ecosystem.</p>
         </header>
     
         <main class="container">
             <section class="page-section">
                 
                 <div class="search-container">
-                    <input type="text" id="app-search" class="search-input" placeholder="Search applications by name or keyword...">
+                    <input type="text" id="app-search" class="search-input" placeholder="Search applications...">
                 </div>
     
                 <div class="app-list" id="app-list">
                     
+                    <div class="app-card" data-category="productivity">
+                        <div class="app-icon sidephone-icon">DN</div>
+                        <div class="app-info">
+                            <h3>Sidephone Calc</h3>
+                            <p>A distraction-free, 480x640 responsive scientific calculator designed specifically for minimalist feature phones.</p>
+                        </div>
+                        <button class="btn btn-outline" onclick="window.location.href='https://justindavis882.github.io/sidephone-calc/'">Launch App</button>
+                    </div>
+
                     <div class="app-card" data-category="productivity">
                         <div class="app-icon">C:OS</div>
                         <div class="app-info">
@@ -74,7 +81,7 @@
         </main>
     
         <footer>
-            <p>&copy; 2026 Digital Native. All rights reserved.</p>
+            <p>&copy; 2026 Digital Native.</p>
         </footer>
     
         <script src="apps.js"></script>
