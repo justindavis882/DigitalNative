@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Collection | Digital Native</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">DIGITAL NATIVE</div>
+        <div class="nav-links">
+            <a href="index.html#services">What We Do</a>
+            <a href="index.html#intake">Client Intake</a>
+            <a href="apps.html">App Store</a>
+        </div>
+    </nav>
+
+    <header class="hero-section" style="padding: 60px 20px;">
+        <h1>Digital Store</h1>
+        <p>Explore our ecosystem of applications and frameworks.</p>
+    </header>
+
+    <main class="container">
+        <section class="page-section">
+            
+            <div class="search-container">
+                <input type="text" id="app-search" class="search-input" placeholder="Search applications by name or keyword...">
+            </div>
+
+            <div class="app-list" id="app-list">
+                
+                <div class="app-card" data-category="productivity">
+                    <div class="app-icon">C:OS</div>
+                    <div class="app-info">
+                        <h3>CodexOS</h3>
+                        <p>A comprehensive, distraction-free environment for world-building and drafting. Organize lore, manage timelines, and write without friction.</p>
+                    </div>
+                    <button class="btn btn-outline">View Details</button>
+                </div>
+
+                <div class="app-card" data-category="education">
+                    <div class="app-icon">SIS</div>
+                    <div class="app-info">
+                        <h3>SimpleSIS</h3>
+                        <p>A lightweight, customizable School Information System designed for streamlined classroom management, attendance tracking, and grading.</p>
+                    </div>
+                    <button class="btn btn-outline">View Details</button>
+                </div>
+
+                <div class="app-card" data-category="production">
+                    <div class="app-icon">V:OS</div>
+                    <div class="app-info">
+                        <h3>VenueOS</h3>
+                        <p>Local network management system ideal for enclosed organizational economies, stage production integrations, and DMX lighting controls.</p>
+                    </div>
+                    <button class="btn btn-outline">View Details</button>
+                </div>
+
+            </div>
+
+            <div class="categories-section">
+                <h3 class="accent-magenta" style="margin-bottom: 25px;">/// Categories</h3>
+                <div class="category-tags">
+                    <button class="btn btn-outline category-btn active" data-filter="all">All Apps</button>
+                    <button class="btn btn-outline category-btn" data-filter="education">Education</button>
+                    <button class="btn btn-outline category-btn" data-filter="productivity">Productivity</button>
+                    <button class="btn btn-outline category-btn" data-filter="production">Production</button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Digital Native. All rights reserved.</p>
+    </footer>
+
+    <script src="apps.js"></script>
+</body>
+</html>
