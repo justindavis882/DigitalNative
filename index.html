@@ -3,124 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Native | Design & Development</title>
-    <link rel="stylesheet" href="main.css">
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-       (function(){
-          emailjs.init("oQXR8d-itHtk1NZKI"); 
-       })();
+    <title>Digital Native Homeschool Academy - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkRuby: '#2b0934',
+                        neonPink: '#8307a4',
+                        alertRed: '#ff2828',
+                        grassGreen: '#00bf63',
+                        eYellow: '#fffc00'
+                    },
+                    fontFamily: {
+                        spartan: ['League Spartan', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
     </script>
+    <style>
+        body {
+            background: radial-gradient(circle at center, #3d0d4a 0%, #2b0934 100%);
+            min-height: 100vh;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(131, 7, 164, 0.4), 0 0 30px rgba(131, 7, 164, 0.2);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .neon-glow:hover:not(:disabled) {
+            box-shadow: 0 0 20px rgba(131, 7, 164, 0.6), 0 0 40px rgba(131, 7, 164, 0.4);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid #ffffff;
+            width: 20px;
+            height: 20px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
-<body>
-    <nav class="top-nav">
-        <div class="logo">DIGITAL NATIVE</div>
-        <div class="nav-links">
-            <a href="#services">What We Do</a>
-            <a href="#intake">Client Intake</a>
-            <!-- <a href="#store">Digital Store</a> -->
-            <a href="apps.html">App Store</a>
+<body class="text-white font-poppins flex items-center justify-center p-4">
+
+    <!-- Login/Register Container -->
+    <div class="glass-panel w-full max-w-md p-8 md:p-10 rounded-2xl relative overflow-hidden">
+        
+        <!-- Decorative Header Elements -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neonPink via-eYellow to-neonPink opacity-80"></div>
+        
+        <div class="text-center mb-8">
+            <h1 class="font-spartan text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-2">
+                DIGITAL NATIVE
+            </h1>
+            <h2 class="font-spartan text-xl md:text-2xl font-semibold tracking-widest text-gray-300 uppercase">
+                Homeschool Academy
+            </h2>
+            <div class="mt-4 w-12 h-1 bg-neonPink mx-auto rounded-full"></div>
         </div>
-    </nav>
 
-    <header class="hero-section">
-        <h1>Building the Digital Frontier</h1>
-        <p>Custom applications, stage production software, and web development.</p>
-        <a href="#intake" class="btn btn-primary">Start a Project</a>
-    </header>
+        <!-- Error Message Container -->
+        <div id="error-container" class="hidden mb-6 p-4 rounded-lg bg-alertRed/10 border border-alertRed/30 flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-alertRed mt-0.5 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span id="error-text" class="text-alertRed text-sm font-medium"></span>
+        </div>
 
-    <main class="container">
-        <section id="services" class="page-section">
-            <h2 class="accent-cyan">/// What We Do</h2>
-            <div class="grid-layout">
-                <div class="card">
-                    <h3>Custom Web Apps</h3>
-                    <p>From Learning Management Systems to POS interfaces, we build lightweight, fast, and scalable tools.</p>
-                </div>
-                <div class="card">
-                    <h3>Production Tech</h3>
-                    <p>Software and hardware integration for stage production, audio mixing, and DMX lighting controls.</p>
-                </div>
-                <div class="card">
-                    <h3>Game Development</h3>
-                    <p>Logic-driven web games and interactive digital experiences.</p>
-                </div>
+        <!-- Login Form -->
+        <form id="login-form" class="space-y-5">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-300 mb-1.5">Email Address</label>
+                <input type="email" id="email" required placeholder="student or mentor email" 
+                    class="w-full bg-darkRuby/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-neonPink focus:ring-1 focus:ring-neonPink transition-colors">
             </div>
-        </section>
-
-        <section id="intake" class="page-section">
-            <h2 class="accent-magenta">/// Client Intake</h2>
-            <p class="section-desc">Tell us about your project. Our team will review your specifications and get back to you with a proposal.</p>
             
-            <form id="intake-form" class="form-container">
-                <div class="input-group">
-                    <label for="client-name">Name / Organization</label>
-                    <input type="text" id="client-name" placeholder="Who are we working with?">
-                </div>
-                <div class="input-group">
-                    <label for="client-email">Email Address</label>
-                    <input type="email" id="client-email" placeholder="contact@domain.com">
-                </div>
-                <div class="input-group">
-                    <label for="project-type">Project Type</label>
-                    <select id="project-type" class="custom-select">
-                        <option value="webapp">Web Application</option>
-                        <option value="website">Standard Website</option>
-                        <option value="hardware">Hardware/Stage Integration</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="project-details">Project Specifications</label>
-                    <textarea id="project-details" rows="5" placeholder="Describe your vision, budget, and timeline..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-secondary">Submit Brief</button>
-            </form>
-        </section>
-
-        <!--  Product Store
-        <section id="store" class="page-section">
-            <h2 class="accent-green">/// Digital Store</h2>
-            <p class="section-desc">Ready-to-deploy boilerplates and software licenses.</p>
-            
-            <div class="grid-layout">
-                <div class="store-item">
-                    <div class="store-img-placeholder">SimpleSIS</div>
-                    <h3>SimpleSIS Boilerplate</h3>
-                    <p>A lightweight Learning Management and School Information System foundation.</p>
-                    <div class="price-row">
-                        <span class="price">$49.99</span>
-                        <button class="btn btn-outline">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="store-item">
-                    <div class="store-img-placeholder">VenueOS</div>
-                    <h3>VenueOS Framework</h3>
-                    <p>Local network management system ideal for enclosed organizational economies.</p>
-                    <div class="price-row">
-                        <span class="price">$75.00</span>
-                        <button class="btn btn-outline">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="store-item">
-                    <div class="store-img-placeholder">LabelGeni</div>
-                    <h3>LabelGeni App</h3>
-                    <p>Plug-and-play web application for generating and printing 4x6 labels.</p>
-                    <div class="price-row">
-                        <span class="price">$29.99</span>
-                        <button class="btn btn-outline">Add to Cart</button>
-                    </div>
-                </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-300 mb-1.5">Password</label>
+                <input type="password" id="password" required placeholder="••••••••" 
+                    class="w-full bg-darkRuby/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-neonPink focus:ring-1 focus:ring-neonPink transition-colors">
             </div>
-        </section>
-        -->
-    </main>
 
-    <footer>
-        <p>&copy; 2026 Digital Native. All rights reserved.</p>
-    </footer>
+            <button type="submit" id="login-btn" class="w-full bg-neonPink text-white font-spartan font-bold text-lg rounded-lg px-4 py-3 mt-6 neon-glow disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center transition-all">
+                <span id="login-btn-text">SECURE LOGIN</span>
+            </button>
+        </form>
 
-    <script src="main.js"></script>
+        <!-- Register Form (Hidden by default, used for testing/setup) -->
+        <form id="register-form" class="space-y-5 hidden">
+            <div>
+                <label for="reg-email" class="block text-sm font-medium text-gray-300 mb-1.5">Email Address</label>
+                <input type="email" id="reg-email" required placeholder="new user email" 
+                    class="w-full bg-darkRuby/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-neonPink focus:ring-1 focus:ring-neonPink transition-colors">
+            </div>
+            
+            <div>
+                <label for="reg-password" class="block text-sm font-medium text-gray-300 mb-1.5">Password (min 6 chars)</label>
+                <input type="password" id="reg-password" required placeholder="••••••••" minlength="6"
+                    class="w-full bg-darkRuby/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-neonPink focus:ring-1 focus:ring-neonPink transition-colors">
+            </div>
+
+            <div>
+                <label for="reg-role" class="block text-sm font-medium text-gray-300 mb-1.5">Select Role</label>
+                <select id="reg-role" required class="w-full bg-darkRuby border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neonPink focus:ring-1 focus:ring-neonPink transition-colors appearance-none">
+                    <option value="student">Student</option>
+                    <option value="mentor">Mentor</option>
+                </select>
+            </div>
+
+            <button type="submit" id="register-btn" class="w-full bg-transparent border-2 border-neonPink text-neonPink font-spartan font-bold text-lg rounded-lg px-4 py-3 mt-6 hover:bg-neonPink hover:text-white disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center transition-all">
+                <span id="register-btn-text">CREATE ACCOUNT</span>
+            </button>
+        </form>
+
+        <!-- Toggle View Links -->
+        <div class="mt-8 text-center border-t border-white/10 pt-6">
+            <button id="toggle-view-btn" class="text-gray-400 hover:text-white text-sm transition-colors font-medium">
+                Need an account for testing? <span class="text-neonPink border-b border-neonPink">Register here.</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK Imports -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Initialize Firebase
+        let app, auth, db;
+        
+        try {
+            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+        } catch (error) {
+            showError("Firebase configuration missing or invalid. Please ensure environment is setup.");
+            console.error("Firebase Init Error:", error);
+        }
+
+        // Global App ID for artifact scoped paths
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'digital-native-lms-v1';
+
+        // DOM Elements
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const toggleViewBtn = document.getElementById('toggle-view-btn');
+        const errorContainer = document.getElementById('error-container');
+        const errorText = document.getElementById('error-text');
+        
+        // Buttons
+        const loginBtn = document.getElementById('login-btn');
+        const loginBtnText = document.getElementById('login-btn-text');
+        const registerBtn = document.getElementById('register-btn');
+        const registerBtnText = document.getElementById('register-btn-text');
+
+        // State
+        let isLoginView = true;
+
+        // Toggle Login / Register UI
+        toggleViewBtn.addEventListener('click', () => {
+            isLoginView = !isLoginView;
+            hideError();
+            
+            if (isLoginView) {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                toggleViewBtn.innerHTML = `Need an account for testing? <span class="text-neonPink border-b border-neonPink">Register here.</span>`;
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                toggleViewBtn.innerHTML = `Already have an account? <span class="text-neonPink border-b border-neonPink">Login here.</span>`;
+            }
+        });
+
+        // Utility: Show Error
+        function showError(message) {
+            errorText.textContent = message;
+            errorContainer.classList.remove('hidden');
+        }
+
+        // Utility: Hide Error
+        function hideError() {
+            errorContainer.classList.add('hidden');
+            errorText.textContent = '';
+        }
+
+        // Utility: Button Loading State
+        function setLoading(button, btnTextElement, isLoading, defaultText) {
+            if (isLoading) {
+                button.disabled = true;
+                btnTextElement.innerHTML = `<div class="spinner"></div> Authenticating...`;
+            } else {
+                button.disabled = false;
+                btnTextElement.innerHTML = defaultText;
+            }
+        }
+
+        // --- LOGIN FLOW ---
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideError();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            setLoading(loginBtn, loginBtnText, true, 'SECURE LOGIN');
+
+            try {
+                // 1. Authenticate with Firebase
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // 2. Fetch User Profile to get Role
+                // Strict Path Rule Applied: /artifacts/{appId}/users/{userId}/{collectionName}/{documentId}
+                const profileRef = doc(db, 'artifacts', appId, 'users', user.uid, 'profile', 'data');
+                const profileSnap = await getDoc(profileRef);
+
+                if (profileSnap.exists()) {
+                    const userData = profileSnap.data();
+                    const role = userData.role;
+
+                    // 3. Redirect based on role
+                    if (role === 'mentor') {
+                        loginBtnText.innerHTML = `Redirecting to Mentor Dashboard...`;
+                        setTimeout(() => window.location.href = 'mentor.html', 800);
+                    } else if (role === 'student') {
+                        loginBtnText.innerHTML = `Redirecting to Student Dashboard...`;
+                        setTimeout(() => window.location.href = 'student.html', 800);
+                    } else {
+                        throw new Error("Invalid role assigned to this account.");
+                    }
+                } else {
+                    // Profile document not found (could happen if created outside this flow)
+                    await signOut(auth);
+                    throw new Error("User profile data missing. Please contact support.");
+                }
+
+            } catch (error) {
+                console.error("Login Error:", error);
+                // Map common firebase errors to user-friendly messages
+                let displayError = "An error occurred during login.";
+                if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                    displayError = "Invalid email or password.";
+                } else if (error.message) {
+                    displayError = error.message;
+                }
+                showError(displayError);
+                setLoading(loginBtn, loginBtnText, false, 'SECURE LOGIN');
+            }
+        });
+
+        // --- REGISTRATION FLOW (For testing/setup) ---
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideError();
+            
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const role = document.getElementById('reg-role').value;
+
+            setLoading(registerBtn, registerBtnText, true, 'CREATE ACCOUNT');
+
+            try {
+                // 1. Create User
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // 2. Save Role to Firestore using strict paths
+                const profileRef = doc(db, 'artifacts', appId, 'users', user.uid, 'profile', 'data');
+                await setDoc(profileRef, {
+                    email: user.email,
+                    role: role,
+                    createdAt: new Date().toISOString()
+                });
+
+                // 3. Immediately redirect to the correct dashboard
+                registerBtnText.innerHTML = `Success! Redirecting...`;
+                setTimeout(() => {
+                    window.location.href = role === 'mentor' ? 'mentor.html' : 'student.html';
+                }, 800);
+
+            } catch (error) {
+                console.error("Registration Error:", error);
+                let displayError = "An error occurred during registration.";
+                if (error.code === 'auth/email-already-in-use') {
+                    displayError = "This email is already in use.";
+                } else if (error.code === 'auth/weak-password') {
+                    displayError = "Password should be at least 6 characters.";
+                }
+                showError(displayError);
+                setLoading(registerBtn, registerBtnText, false, 'CREATE ACCOUNT');
+            }
+        });
+
+        // Clear auth state on page load to ensure fresh login
+        // (Helpful for development/testing this specific screen)
+        window.addEventListener('DOMContentLoaded', () => {
+            if(auth) {
+               signOut(auth).catch(e => console.log("Silent signout err", e));
+            }
+        });
+    </script>
 </body>
 </html>
